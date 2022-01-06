@@ -21,7 +21,19 @@ namespace SimpleHeartbeat_Service
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
+            string[] lines = new[] { DateTime.Now.ToShortDateString() };
+            File.AppendAllLines(@"D:\_TEMP\Heartbeat.txt", lines);
+        }
 
+        public void Start()
+        {
+            _heartbeatTimer?.Start();
+        }
+
+        public void Stop()
+        {
+            if (_heartbeatTimer != null)
+                _heartbeatTimer.Stop();
         }
 
     }
